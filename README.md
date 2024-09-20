@@ -40,6 +40,7 @@ Por lo cual solo se proporciona el codigo .cs, se excluyo todo lo que tenga que 
 ## Estructura del Proyecto
 
 El sistema está dividido en varias capas para una mejor organización:
+```
 Capa_Datos
 ├── BD_Caja.cs
 ├── BD_Categoria.cs
@@ -75,5 +76,5 @@ Scripts_Base_Datos
 ├── ABC_Cliente.sql
 ├── ABC_Cotizacion.sql
 ├── ...
-
+```
 
