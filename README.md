@@ -78,3 +78,14 @@ Scripts_Base_Datos
 ├── ...
 ```
 
+## Algunas Vistas del Proyecto
+
+### Vista de la pantalla de explorador de productos
+![Vista de ventas](https://i.imgur.com/PWS12iy.png)
+
+### Vista de la pantalla de añadir/modificar producto
+![Vista de clientes](https://i.imgur.com/BSeMf5c.png)
+
+### Vista de la pantalla de vista previa de un producto
+![Vista de ventas](https://i.imgur.com/mliIBns.png)
+
