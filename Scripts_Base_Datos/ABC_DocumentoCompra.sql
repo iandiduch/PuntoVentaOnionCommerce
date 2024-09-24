@@ -59,20 +59,40 @@ _Importe
 end $$;
 
 #--Vista:
-create View V_Documentos_Compra_Detalle
-As
-	Select 
-	c.Id_DocComp , c.NroFac_Fisico ,c.SubTotal_ingre , c.Fecha_Ingre , c.Total_Ingre , c.ModalidadPago, c.TiempoEspera , c.Fecha_Vencimiento ,
-	c.Estado_Ingre ,c.Recibiconforme , c.Datos_Adicional , c.TipoDoc_Compra ,
-	P.IDPROVEE ,P.NOMBRE ,P.RUC,
-	Det.PrecioUnit , Det.Cantidad, Det.Importe,
-	Pro.Id_Pro, Pro.Descripcion_Larga, pro.Stock_Actual,pro.Pre_Compra$ , pro.Pre_CompraS           
-	From
-	DocumentoCompras c, Detalle_DocumCompra Det, Productos Pro, Proveedor P
-	where
-	c.IDPROVEE =p.IDPROVEE and
-	c.Id_DocComp =Det.Id_DocComp  And
-	Det.Id_Pro=Pro.Id_Pro;
+CREATE VIEW V_Documentos_Compra_Detalle AS
+SELECT 
+    c.Id_DocComp, 
+    c.NroFac_Fisico, 
+    c.SubTotal_ingre, 
+    c.Fecha_Ingre, 
+    c.Total_Ingre, 
+    c.ModalidadPago, 
+    c.TiempoEspera, 
+    c.Fecha_Vencimiento,
+    c.Estado_Ingre, 
+    c.Recibiconforme, 
+    c.Datos_Adicional, 
+    c.TipoDoc_Compra,
+    P.IDPROVEE, 
+    P.NOMBRE, 
+    P.RUC,
+    Det.PrecioUnit, 
+    Det.Cantidad, 
+    Det.Importe,
+    Pro.Id_Pro, 
+    Pro.Descripcion_Larga, 
+    Pro.Stock_Actual, 
+    Pro.Pre_Compra$, 
+    Pro.Pre_CompraS           
+FROM 
+    DocumentoCompras c
+INNER JOIN 
+    Proveedor P ON c.IDPROVEE = P.IDPROVEE
+INNER JOIN 
+    Detalle_DocumCompra Det ON c.Id_DocComp = Det.Id_DocComp
+INNER JOIN 
+    Productos Pro ON Det.Id_Pro = Pro.Id_Pro;
+
 
 
 #--Buscar un Documento de Compra Completo:
@@ -88,19 +108,35 @@ NroFac_Fisico=_xvalor;
 end $$;
 
 #--Una Vista solo de las Tablas Principales o Master:
-create View V_Documentos_CompraPrincipal
-As
-	Select 
-	c.Id_DocComp , c.NroFac_Fisico ,c.SubTotal_ingre , c.Fecha_Ingre , c.Total_Ingre , c.ModalidadPago, c.TiempoEspera , c.Fecha_Vencimiento ,
-	c.Estado_Ingre ,c.Recibiconforme , c.Datos_Adicional , c.TipoDoc_Compra ,
-	P.IDPROVEE ,P.NOMBRE ,P.RUC,
-	u.Id_Usu , u.Nombres , u.Apellidos , u.Usuario , u.Ubicacion_Foto 	   
-	From
-	DocumentoCompras c, Proveedor P, Usuarios u
-	where
-	c.IDPROVEE =p.IDPROVEE and
-	c.id_Usu = u.Id_Usu 
-;
+CREATE VIEW V_Documentos_CompraPrincipal AS
+SELECT 
+    c.Id_DocComp, 
+    c.NroFac_Fisico, 
+    c.SubTotal_ingre, 
+    c.Fecha_Ingre, 
+    c.Total_Ingre, 
+    c.ModalidadPago, 
+    c.TiempoEspera, 
+    c.Fecha_Vencimiento,
+    c.Estado_Ingre, 
+    c.Recibiconforme, 
+    c.Datos_Adicional, 
+    c.TipoDoc_Compra,
+    P.IDPROVEE, 
+    P.NOMBRE, 
+    P.RUC,
+    u.Id_Usu, 
+    u.Nombres, 
+    u.Apellidos, 
+    u.Usuario, 
+    u.Ubicacion_Foto
+FROM 
+    DocumentoCompras c
+INNER JOIN 
+    Proveedor P ON c.IDPROVEE = P.IDPROVEE
+INNER JOIN 
+    Usuarios u ON c.id_Usu = u.Id_Usu;
+
 
 #--Consultas para el Explorador de Compras:
 #--1) Ahora un Buscador General

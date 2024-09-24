@@ -70,18 +70,40 @@ _Costo_Total_Saldo
 end $$;
 
 
-create View V_Kardex_Detalle
-AS
+create VIEW V_Kardex_Detalle AS
 SELECT 
-KR.Id_krdx , KR.EstadoKrdx ,
-x.IDPROVEE , x.NOMBRE , x.DIRECCION , x.CONTACTO , x.TELEFONO,
-DT.Item, DT.Fecha_Krdx , DT.Doc_Soporte , DT.Det_Operacion , DT.Cantidad_In , DT.Precio_In , DT.Total_In ,
-DT.Cantidad_Out , DT.Precio_Out , DT.Total_Out , DT.Cantidad_Saldo , DT.Promedio , DT.Costo_Total_Saldo ,
-PR.Id_Pro , PR.Descripcion_Larga , PR.Stock_Actual 
-FROM KardexProducto KR , Detalle_Kardex  DT , Productos PR , Proveedor x
-WHERE 
-KR.Id_krdx = DT.Id_krdx AND
-KR.Id_Pro = PR.Id_Pro ;
+    KR.Id_krdx, 
+    KR.EstadoKrdx,
+    x.IDPROVEE, 
+    x.NOMBRE, 
+    x.DIRECCION, 
+    x.CONTACTO, 
+    x.TELEFONO,
+    DT.Item, 
+    DT.Fecha_Krdx, 
+    DT.Doc_Soporte, 
+    DT.Det_Operacion, 
+    DT.Cantidad_In, 
+    DT.Precio_In, 
+    DT.Total_In,
+    DT.Cantidad_Out, 
+    DT.Precio_Out, 
+    DT.Total_Out, 
+    DT.Cantidad_Saldo, 
+    DT.Promedio, 
+    DT.Costo_Total_Saldo,
+    PR.Id_Pro, 
+    PR.Descripcion_Larga, 
+    PR.Stock_Actual 
+FROM 
+    KardexProducto KR
+INNER JOIN 
+    Detalle_Kardex DT ON KR.Id_krdx = DT.Id_krdx
+INNER JOIN 
+    Productos PR ON KR.Id_Pro = PR.Id_Pro
+INNER JOIN 
+    Proveedor x ON PR.IDPROVEE = x.IDPROVEE;
+
 
 
 delimiter $$;

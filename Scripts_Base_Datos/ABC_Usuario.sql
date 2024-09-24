@@ -7,12 +7,21 @@ insert into Usuarios values (1, 'Ian','Diduch',1, 'admin','admin','-','2000/01/0
 
 
 
-Create View V_Usuarios_Roles
-As
-Select Id_Usu,u.Nombres , u.Apellidos ,u.Usuario ,u.Contraseñax ,u.Ubicacion_Foto,
-U.Id_Rol,R.Rol  ,U.Estado_usu
-From Usuarios U, Roles R
-Where U.Id_Rol=R.Id_Rol;
+create VIEW V_Usuarios_Roles AS
+SELECT 
+    U.Id_Usu, 
+    U.Nombres, 
+    U.Apellidos, 
+    U.Usuario, 
+    U.Contraseñax, 
+    U.Ubicacion_Foto,
+    U.Id_Rol, 
+    R.Rol, 
+    U.Estado_usu
+FROM 
+    Usuarios U
+INNER JOIN 
+    Roles R ON U.Id_Rol = R.Id_Rol;
                 
 
 delimiter $$;

@@ -97,18 +97,40 @@ if _new_idpro <> _idpro then
 end $$;
 
 #--Unimos Las Tablas en Vistas:
-Create view v_Productos_yDependientes
-As
-select 
-p.Id_Pro , p.Descripcion_Larga , p.Frank , p.Pre_CompraS , p.Pre_Compra$ , p.Stock_Actual , p.Foto , p.Pre_vntaxMenor , p.Pre_vntaxMayor , p.Pre_Vntadolar ,
-p.UndMedida , p.PesoUnit , p.UtilidadUnit , p.TipoProdcto , p.Valor_porCant , p.Estado_Pro ,
-x.IDPROVEE , x.NOMBRE , x.DIRECCION, x.TELEFONO ,
-c.Id_Cat , c.Categoria , m.Id_Marca , m.Marca 
-from Productos p, Proveedor x, Categorias c, Marcas m
-where
-p.IDPROVEE =x.IDPROVEE and
-p.Id_Cat = c.Id_Cat and
-p.Id_Marca =m.Id_Marca ;
+create VIEW v_Productos_yDependientes AS
+SELECT 
+    p.Id_Pro, 
+    p.Descripcion_Larga, 
+    p.Frank, 
+    p.Pre_CompraS, 
+    p.Pre_Compra$, 
+    p.Stock_Actual, 
+    p.Foto, 
+    p.Pre_vntaxMenor, 
+    p.Pre_vntaxMayor, 
+    p.Pre_Vntadolar,
+    p.UndMedida, 
+    p.PesoUnit, 
+    p.UtilidadUnit, 
+    p.TipoProdcto, 
+    p.Valor_porCant, 
+    p.Estado_Pro,
+    x.IDPROVEE, 
+    x.NOMBRE, 
+    x.DIRECCION, 
+    x.TELEFONO,
+    c.Id_Cat, 
+    c.Categoria, 
+    m.Id_Marca, 
+    m.Marca 
+FROM 
+    Productos p
+INNER JOIN 
+    Proveedor x ON p.IDPROVEE = x.IDPROVEE
+INNER JOIN 
+    Categorias c ON p.Id_Cat = c.Id_Cat
+INNER JOIN 
+    Marcas m ON p.Id_Marca = m.Id_Marca;
 
 
 
